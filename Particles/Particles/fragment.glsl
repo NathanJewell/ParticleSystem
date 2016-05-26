@@ -1,5 +1,3 @@
-
-
 void main(void)
 {
 	vec4 color = gl_Color;

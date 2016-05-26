@@ -62,9 +62,27 @@ inline void drawParticles()
 {
 	buffer.clear(sf::Color(0, 0, 0, 0));
 	finalBuffer.clear(sf::Color(0, 0, 0, 0));
+	buffer.resetGLStates();
+
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glColor4f(1.0, 0.0, 0.0, .4);
+	glBegin(GL_POINTS);
+	for (int i = 0; i < numParticles; i++)
+	{
+		int index = i * 3;
+		glVertex3f(h_pos[index]/100, h_pos[index + 1]/100, h_pos[index + 2]/100);
+	}
+	glEnd();
+
+	buffer.pushGLStates();
 
 	sf::Sprite mySprite(buffer.getTexture());
 	pointProgram.setParameter("texture", buffer.getTexture());
+
+	buffer.popGLStates();
 
 	finalBuffer.draw(mySprite, &pointProgram);
 
@@ -97,8 +115,8 @@ int main()
 	genParticles();
 
 	//copy from cpu to GPU
-	size_t size = sizeof(double) * 3 * numParticles;
-	cudaError_t err = cudaSuccess;
+
+
 	err = cudaMemcpy(d_pos, h_pos, size, cudaMemcpyHostToDevice);
 	err = cudaMemcpy(d_vel, h_vel, size, cudaMemcpyHostToDevice);
 	err = cudaMemcpy(d_acc, h_acc, size, cudaMemcpyHostToDevice);
@@ -113,14 +131,32 @@ int main()
 
 	niceProgram.loadFromFile("vertex.glsl", "fragment.glsl");
 
-	while (window.isOpen())
+	int width = window.getSize().x;
+	int height = window.getSize().y;
+	glViewport(0, 0, 1024, 1024);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-width / 2, width / 2, -height / 2, height / 2, -1000000000, 1000000000);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	//glMatrixMode(GL_PROJECTION);
+
+	//glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+
+	glLoadIdentity();
+
+	//glEnable(GL_DEPTH_TEST);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	sf::Event event;
+	while (window.pollEvent(event))
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
+		if (event.type == sf::Event::Closed)
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
+			window.close();
 		}
+				
 		//gpuupdate
 		window.clear(sf::Color(0, 0, 0, 0));
 		

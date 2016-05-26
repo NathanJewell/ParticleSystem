@@ -1,5 +1,5 @@
-uniform sampler2D texture;
-uniform vec2 resolution;
+//uniform sampler2D texture;
+//uniform vec2 resolution;
 
 void main()
 {

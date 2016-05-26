@@ -6,5 +6,5 @@ void main(void)
 	
 	vec3 product = (light * cos(color.a*3.141592)) + (dense * sin(color.a*3.141592));
 	vec4 newColor = vec4(1.0,0.0,0.0, 1.0);
-	gl_FragColor = gl_Color;// vec4(.2, .2, .2, .2);
+	gl_FragColor = vec4(.2, .2, .2, .2);
 }

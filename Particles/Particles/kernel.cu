@@ -3,6 +3,7 @@
 #include "device_launch_parameters.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
+#include "freeglut\glut.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,7 +28,7 @@ sf::Shader niceProgram;
 sf::RenderTexture buffer;
 sf::RenderTexture finalBuffer;
 
-sf::RenderWindow window(sf::VideoMode(1024, 1024), "SFML works!");
+sf::RenderWindow window;
 
 inline double random(const double& max, const double& min = 0)
 {
@@ -62,11 +63,21 @@ inline void drawParticles()
 {
 	buffer.clear(sf::Color(0, 0, 0, 0));
 	finalBuffer.clear(sf::Color(0, 0, 0, 0));
-	buffer.resetGLStates();
+	window.clear(sf::Color(0, 0, 0, 0));
+	window.resetGLStates();
+	window.pushGLStates();
 
+	window.setActive(true);
 
+	
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glColor4f(1.0f, 0.0f, 1.0f, .4f);
+	glPointSize(2);
+	glEnable(GL_POINT_SMOOTH);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_CULL_FACE);
 
 	glColor4f(1.0, 0.0, 0.0, .4);
 	glBegin(GL_POINTS);
@@ -75,25 +86,35 @@ inline void drawParticles()
 		int index = i * 3;
 		glVertex3f(h_pos[index]/100, h_pos[index + 1]/100, h_pos[index + 2]/100);
 	}
+	glVertex3f(0, 0, 0);
 	glEnd();
+	glDisable(GL_BLEND);
+	glDisable(GL_POINT_SMOOTH);
+	
+	window.popGLStates();
+	//buffer.pushGLStates();
+	//buffer.display();
 
-	buffer.pushGLStates();
+	//window.setActive(true);
+
+	//sf::Sprite mySprite(buffer.getTexture());
+	//pointProgram.setParameter("texture", buffer.getTexture());
+
+	//finalBuffer.draw(mySprite, &pointProgram);
+
+	//window.setActive(true);
 
 	sf::Sprite mySprite(buffer.getTexture());
-	pointProgram.setParameter("texture", buffer.getTexture());
+	//niceProgram.setParameter("texture", finalBuffer.getTexture());
 
-	buffer.popGLStates();
-
-	finalBuffer.draw(mySprite, &pointProgram);
-
-	mySprite.setTexture(finalBuffer.getTexture());
-	niceProgram.setParameter("texture", finalBuffer.getTexture());
-
-	window.draw(mySprite, &niceProgram);
+	//window.draw(mySprite);// , &niceProgram);
+	window.display();
 }
 
 int main()
 {
+	srand(time(NULL));
+
 	int pointsPerParticleVec = 3;
 	size_t size = sizeof(double) * pointsPerParticleVec * numParticles;
 
@@ -131,39 +152,80 @@ int main()
 
 	niceProgram.loadFromFile("vertex.glsl", "fragment.glsl");
 
+	sf::ContextSettings settings;
+	settings.depthBits = 24;
+	settings.stencilBits = 0;
+	settings.antialiasingLevel = 0;
+	settings.majorVersion = 4;
+	settings.minorVersion = 5;
+
+	window.create(sf::VideoMode(1024, 1024), "N-Body", sf::Style::Default, settings);
+
 	int width = window.getSize().x;
 	int height = window.getSize().y;
-	glViewport(0, 0, 1024, 1024);
+
+
+	buffer.create(width, height);
+	finalBuffer.create(width, height);
+
+	glViewport(0, 0, width, height);
+	/*
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-width / 2, width / 2, -height / 2, height / 2, -1000000000, 1000000000);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	*/
 
-	//glMatrixMode(GL_PROJECTION);
-
-	//glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-
+	glEnable(GL_DEPTH_TEST);
+	//glViewport(512, 0, 128, 128);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	glOrtho(-2240, 2240, -2240, 2240, -1000000000, 1000000000);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	//prepare OpenGL surface for HSR
+	glClearDepth(1.f);
+	glClearColor(0.3f, 0.3f, 0.3f, 0.f);
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+
+	//// Setup a perspective projection & Camera position
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(90.f, 1.f, 1.f, 300.0f);//fov, aspect, zNear, zFar
 
 	//glEnable(GL_DEPTH_TEST);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	sf::Event event;
-	while (window.pollEvent(event))
+
+	bool running = true;
+	while (running)
 	{
-		if (event.type == sf::Event::Closed)
+		// handle events
+		sf::Event event;
+		while (window.pollEvent(event))
 		{
-			window.close();
+			if (event.type == sf::Event::Closed)
+			{
+				// end the program
+				running = false;
+			}
+			else if (event.type == sf::Event::Resized)
+			{
+				// adjust the viewport when the window is resized
+				glViewport(0, 0, event.size.width, event.size.height);
+			}
 		}
-				
 		//gpuupdate
-		window.clear(sf::Color(0, 0, 0, 0));
-		
+		// clear the buffers
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// draw...
 		drawParticles();
 
-
-
+		// end the current frame (internally swaps the front and back buffers)
 		window.display();
 	}
 

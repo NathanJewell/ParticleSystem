@@ -83,7 +83,7 @@ void ParticleRenderer::drawFrame()
 
 	if (calculate)
 	{
-		sys.doFrameGPU(mousePos[0]*MOUSE_SCALE*COORD_TO_PIXEL, mousePos[1]*MOUSE_SCALE*COORD_TO_PIXEL);
+		sys.doFrameGPU(mousePos[0]*COORD_TO_PIXEL*(10000/1024), mousePos[1]*COORD_TO_PIXEL*(10000/1024));
 	}
 
 	//std::cout << "frame" << std::endl;
@@ -93,10 +93,7 @@ void ParticleRenderer::drawFrame()
 		for (int i = 0; i < numParticles * 3; i++)	//normalize coordinates for display
 		{
 			screenParticles[i] = particles[i] / COORD_TO_PIXEL;
-			if ((i - 2) % 3 == 0)
-			{
-				screenParticles[i] = 0;
-			}
+
 		}
 	}
 	else
@@ -133,7 +130,7 @@ void ParticleRenderer::drawFrame()
 	glColor4f(1.0, 0.0, 0.0, 1.0);
 	glPointSize(10);
 	glBegin(GL_POINTS);
-	glVertex3f(mousePos[0]*MOUSE_SCALE/10, mousePos[1]*MOUSE_SCALE/10, 0);
+	glVertex3f(mousePos[0]*(10000/1024), mousePos[1]*(10000/1024), 0);
 	glEnd();
 	//glPopMatrix();
 
@@ -278,7 +275,7 @@ void ParticleRenderer::initSystem()
 	camera[1] = 0;
 	camera[2] = 2000;
 
-	sys.allocate(1000000);
+	sys.allocate(2000000);
 	sys.initialize();
 	numParticles = sys.getNumParticles();
 

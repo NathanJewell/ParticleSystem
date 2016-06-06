@@ -20,11 +20,11 @@ typedef double p_type;	//type to use for all particle stuff
 #define TPB2d 16
 
 #define USE_MOUSE
-#define MOUSE_MASS	EARTH_KG*100 
+#define MOUSE_MASS	EARTH_KG*100000
 #define MOUSE_SCALE 150
 static int* mousePos;
 
-#define MAX_VEL 44000
+#define MAX_VEL 4400
 
 //1million km per pixel
 //billion dist units per pixel

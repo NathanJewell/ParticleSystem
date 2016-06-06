@@ -129,13 +129,13 @@ __global__ void doParticlesMouse(p_type* pos, p_type* vel, p_type* acc, p_type* 
 		{
 			distsqr *= -1;
 		}
-		//if (distsqr < 800000)
-		//{
-		//	distsqr = 500;
-		//}
-		else if (distsqr > 8000000000)
+		if (distsqr < 800000)
 		{
-			distsqr = 8000000000;
+			distsqr = 800000;
+		}
+		else if (distsqr > 80000000000)
+		{
+			distsqr = 80000000000;
 		}
 
 		p_type attraction = (mass[threadID] * MOUSE_MASS) / (distsqr);	//gravity equation
@@ -152,11 +152,11 @@ __global__ void doParticlesMouse(p_type* pos, p_type* vel, p_type* acc, p_type* 
 
 		acc[pIndex] += (forcex * tstep) / mass[threadID];
 		acc[pIndex + 1] += (forcey * tstep) / mass[threadID];
-		//acc[pIndex + 2] += (forcez * tstep) / mass[threadID];
+		acc[pIndex + 2] += (forcez * tstep) / mass[threadID];
 
 		
-		//if (vel[pIndex] > MAX_VEL){ vel[pIndex] = MAX_VEL; }
-		//if (vel[pIndex + 1] > MAX_VEL){ vel[pIndex+1] = MAX_VEL; }
+		if (vel[pIndex] > MAX_VEL){ vel[pIndex] = MAX_VEL; }
+		if (vel[pIndex + 1] > MAX_VEL){ vel[pIndex+1] = MAX_VEL; }
 		if (vel[pIndex + 2] > MAX_VEL){ vel[pIndex+2] = MAX_VEL; }
 		
 

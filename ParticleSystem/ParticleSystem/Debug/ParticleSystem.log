@@ -1,0 +1,67 @@
+﻿Build started 5/12/2016 9:13:06 AM.
+     1>Project "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\ParticleSystem.vcxproj" on node 2 (Build target(s)).
+     1>AddCudaCompileDeps:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /Iinc /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /Iinc /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I. /FIcuda_runtime.h /c C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\kernel.cu 
+       AddCudaCompileDeps:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /Iinc /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /Iinc /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I. /FIcuda_runtime.h /c C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\math.cu 
+       CudaBuild:
+         Compiling CUDA source file kernel.cu...
+         cmd.exe /C "C:\Users\njewell5880\AppData\Local\Temp\tmp8ce5a05202694567950ccea52f917b4e.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\kernel.cu"
+         
+         C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\kernel.cu" 
+         kernel.cu
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\noiseutils.h(1217): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+     1>C:/Users/njewell5880/Desktop/CudaNBody/ParticleSystem/ParticleSystem/kernel.cu(20): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+       CudaBuild:
+         Compiling CUDA source file math.cu...
+         cmd.exe /C "C:\Users\njewell5880\AppData\Local\Temp\tmp122fdc9ad16a46bb85075cd14024371c.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\math.cu.obj "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\math.cu"
+         
+         C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -Iinc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\math.cu.obj "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\math.cu" 
+         math.cu
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /Iinc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ParticleRenderer.cpp ParticleSystem.cpp
+         ParticleSystem.cpp
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\noiseutils.h(1217): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(72): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(78): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(78): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(80): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(80): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(82): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(82): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(84): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(91): warning C4244: '=' : conversion from 'int' to 'p_type', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(92): warning C4244: '=' : conversion from 'int' to 'p_type', possible loss of data
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\particlesystem.cpp(93): warning C4244: '=' : conversion from 'int' to 'p_type', possible loss of data
+         ParticleRenderer.cpp
+     1>c:\users\njewell5880\desktop\cudanbody\particlesystem\particlesystem\noiseutils.h(1217): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\Debug\ParticleSystem.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\Win32" /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\Win32" /LIBPATH:C:\Users\Nathan\Desktop\CudaNBody\ParticleSystem\ParticleSystem\lib\x64 cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\Debug\ParticleSystem.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\Debug\ParticleSystem.lib" /MACHINE:X86 Debug\kernel.cu.obj
+         Debug\math.cu.obj
+         Debug\ParticleRenderer.obj
+         Debug\ParticleSystem.obj
+         lib\x64\freeglut.lib
+         lib\x64\glew64.lib
+     1>kernel.cu.obj : error LNK2019: unresolved external symbol __imp__glutInit@8 referenced in function _main
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glewInit referenced in function "public: void __thiscall ParticleRenderer::initGL(void)" (?initGL@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutInitWindowSize@8 referenced in function "public: void __thiscall ParticleRenderer::initGL(void)" (?initGL@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutInitDisplayMode@4 referenced in function "public: void __thiscall ParticleRenderer::initGL(void)" (?initGL@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutMainLoop@0 referenced in function "public: void __thiscall ParticleRenderer::begin(void)" (?begin@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutCreateWindow@4 referenced in function "public: void __thiscall ParticleRenderer::initGL(void)" (?initGL@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutPostRedisplay@0 referenced in function "public: static void __cdecl ParticleRenderer::drawFrame(void)" (?drawFrame@ParticleRenderer@@SAXXZ)
+     1>ParticleRenderer.obj : error LNK2019: unresolved external symbol __imp__glutDisplayFunc@4 referenced in function "public: void __thiscall ParticleRenderer::initGL(void)" (?initGL@ParticleRenderer@@QAEXXZ)
+     1>ParticleRenderer.obj : error LNK2001: unresolved external symbol __imp____glewBindBuffer
+     1>ParticleRenderer.obj : error LNK2001: unresolved external symbol __imp____glewBufferData
+     1>ParticleRenderer.obj : error LNK2001: unresolved external symbol __imp____glewGenBuffers
+     1>ParticleSystem.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall noise::module::Module::~Module(void)" (??1Module@module@noise@@UAE@XZ) referenced in function "public: virtual __thiscall noise::module::Perlin::~Perlin(void)" (??1Perlin@module@noise@@UAE@XZ)
+     1>ParticleSystem.obj : error LNK2019: unresolved external symbol "public: __thiscall noise::module::Perlin::Perlin(void)" (??0Perlin@module@noise@@QAE@XZ) referenced in function "public: void __thiscall ParticleSystem::initialize(void)" (?initialize@ParticleSystem@@QAEXXZ)
+     1>ParticleSystem.obj : error LNK2019: unresolved external symbol "public: virtual double __thiscall noise::module::Perlin::GetValue(double,double,double)const " (?GetValue@Perlin@module@noise@@UBENNNN@Z) referenced in function "public: void __thiscall ParticleSystem::initialize(void)" (?initialize@ParticleSystem@@QAEXXZ)
+     1>C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\Debug\ParticleSystem.exe : fatal error LNK1120: 14 unresolved externals
+     1>Done Building Project "C:\Users\njewell5880\Desktop\CudaNBody\ParticleSystem\ParticleSystem\ParticleSystem.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:10.54
